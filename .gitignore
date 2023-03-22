@@ -1,0 +1,10 @@
+**/.DS_Store
+node_modules
+/lib
+/__buildtest__
+coverage
+.vscode
+.idea
+*.log
+.eslintcache
+value-object-ts.code-workspace
