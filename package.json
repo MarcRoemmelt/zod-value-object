@@ -1,5 +1,5 @@
 {
-  "name": "value-object-ts",
+  "name": "zod-value-object",
   "version": "0.1.0",
   "description": "TypeScript implementation of a base ValueObject based on the zod library",
   "main": "./lib/index.js",
