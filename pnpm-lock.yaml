@@ -17,7 +17,7 @@ specifiers:
   jest: ^29.5.0
   lint-staged: ^12.5.0
   prettier: ^2.8.6
-  rollup: ^2.79.1
+  rollup: ^3.0.0
   ts-jest: ^29.0.5
   ts-morph: ^14.0.0
   ts-node: ^10.9.1
@@ -27,7 +27,7 @@ specifiers:
   zod: ^3.21.4
 
 devDependencies:
-  '@rollup/plugin-typescript': 11.0.0_gta7oowp4j2tir46rvp4skcu5a
+  '@rollup/plugin-typescript': 11.0.0_7sniqkrn5rmxrmax2dmiqcv3qu
   '@types/jest': 29.5.0
   '@types/node': 18.15.5
   '@typescript-eslint/eslint-plugin': 5.56.0_2hcjazgfnbtq42tcc73br2vup4
@@ -43,7 +43,7 @@ devDependencies:
   jest: 29.5.0_757mb262zsxkcnuknwfdsckmku
   lint-staged: 12.5.0
   prettier: 2.8.6
-  rollup: 2.79.1
+  rollup: 3.20.0
   ts-jest: 29.0.5_44ttdtjaknnkcgzh5px4h2qxl4
   ts-morph: 14.0.0
   ts-node: 10.9.1_zlbzrxdj56n2qhafx752nt3nlm
@@ -973,7 +973,7 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@rollup/plugin-typescript/11.0.0_gta7oowp4j2tir46rvp4skcu5a:
+  /@rollup/plugin-typescript/11.0.0_7sniqkrn5rmxrmax2dmiqcv3qu:
     resolution: {integrity: sha512-goPyCWBiimk1iJgSTgsehFD5OOFHiAknrRJjqFCudcW8JtWiBlK284Xnn4flqMqg6YAjVG/EE+3aVzrL5qNSzQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -986,14 +986,14 @@ packages:
       tslib:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.2_rollup@2.79.1
+      '@rollup/pluginutils': 5.0.2_rollup@3.20.0
       resolve: 1.22.1
-      rollup: 2.79.1
+      rollup: 3.20.0
       tslib: 2.5.0
       typescript: 5.0.2
     dev: true
 
-  /@rollup/pluginutils/5.0.2_rollup@2.79.1:
+  /@rollup/pluginutils/5.0.2_rollup@3.20.0:
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -1005,7 +1005,7 @@ packages:
       '@types/estree': 1.0.0
       estree-walker: 2.0.2
       picomatch: 2.3.1
-      rollup: 2.79.1
+      rollup: 3.20.0
     dev: true
 
   /@sinclair/typebox/0.25.24:
@@ -3766,9 +3766,9 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rollup/2.79.1:
-    resolution: {integrity: sha512-uKxbd0IhMZOhjAiD5oAFp7BqvkA4Dv47qpOCtaNvng4HBwdbWtdOh8f5nZNuk2rp51PMGk3bzfWu5oayNEuYnw==}
-    engines: {node: '>=10.0.0'}
+  /rollup/3.20.0:
+    resolution: {integrity: sha512-YsIfrk80NqUDrxrjWPXUa7PWvAfegZEXHuPsEZg58fGCdjL1I9C1i/NaG+L+27kxxwkrG/QEDEQc8s/ynXWWGQ==}
+    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
