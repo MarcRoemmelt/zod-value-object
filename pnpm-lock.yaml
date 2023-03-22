@@ -10,7 +10,7 @@ specifiers:
   eslint-config-prettier: ^8.8.0
   eslint-plugin-ban: ^1.6.0
   eslint-plugin-import: ^2.27.5
-  eslint-plugin-simple-import-sort: ^7.0.0
+  eslint-plugin-simple-import-sort: ^10.0.0
   eslint-plugin-unused-imports: ^2.0.0
   fixpack: ^4.0.0
   husky: ^7.0.4
@@ -36,7 +36,7 @@ devDependencies:
   eslint-config-prettier: 8.8.0_eslint@8.36.0
   eslint-plugin-ban: 1.6.0
   eslint-plugin-import: 2.27.5_cnkxirszkzb4o6ts7gbclno24e
-  eslint-plugin-simple-import-sort: 7.0.0_eslint@8.36.0
+  eslint-plugin-simple-import-sort: 10.0.0_eslint@8.36.0
   eslint-plugin-unused-imports: 2.0.0_pjgbsoxltfjhart6hcjsvw66hu
   fixpack: 4.0.0
   husky: 7.0.4
@@ -2061,8 +2061,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-simple-import-sort/7.0.0_eslint@8.36.0:
-    resolution: {integrity: sha512-U3vEDB5zhYPNfxT5TYR7u01dboFZp+HNpnGhkDB2g/2E4wZ/g1Q9Ton8UwCLfRV9yAKyYqDh62oHOamvkFxsvw==}
+  /eslint-plugin-simple-import-sort/10.0.0_eslint@8.36.0:
+    resolution: {integrity: sha512-AeTvO9UCMSNzIHRkg8S6c3RPy5YEwKWSQPx3DYghLedo2ZQxowPFLGDN1AZ2evfg6r6mjBSZSLxLFsWSu3acsw==}
     peerDependencies:
       eslint: '>=5.0.0'
     dependencies:
