@@ -17,11 +17,9 @@
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build:types": "tsc -p tsconfig.types.json",
     "build:test": "tsc -p tsconfig.test.json",
-    "rollup": "rollup --config rollup.config.ts",
     "test:watch": "jest --watch",
     "test": "jest --coverage",
     "prepublishOnly": "npm run test && npm run build",
-    "benchmark": "tsx src/benchmarks/index.ts",
     "prepare": "husky install"
   },
   "devDependencies": {
