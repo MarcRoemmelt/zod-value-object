@@ -19,7 +19,7 @@ specifiers:
   prettier: ^2.8.6
   rollup: ^3.0.0
   ts-jest: ^29.0.5
-  ts-morph: ^14.0.0
+  ts-morph: ^17.0.0
   ts-node: ^10.9.1
   tslib: ^2.5.0
   tsx: ^3.12.6
@@ -45,7 +45,7 @@ devDependencies:
   prettier: 2.8.6
   rollup: 3.20.0
   ts-jest: 29.0.5_44ttdtjaknnkcgzh5px4h2qxl4
-  ts-morph: 14.0.0
+  ts-morph: 17.0.1
   ts-node: 10.9.1_zlbzrxdj56n2qhafx752nt3nlm
   tslib: 2.5.0
   tsx: 3.12.6
@@ -1024,8 +1024,8 @@ packages:
       '@sinonjs/commons': 2.0.0
     dev: true
 
-  /@ts-morph/common/0.13.0:
-    resolution: {integrity: sha512-fEJ6j7Cu8yiWjA4UmybOBH9Efgb/64ZTWuvCF4KysGu4xz8ettfyaqFt8WZ1btCxXsGZJjZ2/3svOF6rL+UFdQ==}
+  /@ts-morph/common/0.18.1:
+    resolution: {integrity: sha512-RVE+zSRICWRsfrkAw5qCAK+4ZH9kwEFv5h0+/YeHTLieWP7F4wWq4JsKFuNWG+fYh/KF+8rAtgdj5zb2mm+DVA==}
     dependencies:
       fast-glob: 3.2.12
       minimatch: 5.1.6
@@ -4129,10 +4129,10 @@ packages:
       yargs-parser: 21.1.1
     dev: true
 
-  /ts-morph/14.0.0:
-    resolution: {integrity: sha512-tO8YQ1dP41fw8GVmeQAdNsD8roZi1JMqB7YwZrqU856DvmG5/710e41q2XauzTYrygH9XmMryaFeLo+kdCziyA==}
+  /ts-morph/17.0.1:
+    resolution: {integrity: sha512-10PkHyXmrtsTvZSL+cqtJLTgFXkU43Gd0JCc0Rw6GchWbqKe0Rwgt1v3ouobTZwQzF1mGhDeAlWYBMGRV7y+3g==}
     dependencies:
-      '@ts-morph/common': 0.13.0
+      '@ts-morph/common': 0.18.1
       code-block-writer: 11.0.3
     dev: true
 
