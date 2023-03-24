@@ -7,4 +7,4 @@ coverage
 .idea
 *.log
 .eslintcache
-value-object-ts.code-workspace
+zod-value-object.code-workspace

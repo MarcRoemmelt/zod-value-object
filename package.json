@@ -1,31 +1,15 @@
 {
   "name": "zod-value-object",
-  "version": "0.1.0",
   "description": "TypeScript implementation of a base ValueObject based on the zod library",
-  "main": "./lib/index.js",
-  "module": "./lib/index.mjs",
-  "scripts": {
-    "prettier:check": "prettier --check src/**/*.ts --no-error-on-unmatched-pattern",
-    "prettier:fix": "prettier --write src/**/*.ts --ignore-unknown --no-error-on-unmatched-pattern",
-    "lint:check": "eslint --cache --ext .ts ./src",
-    "lint:fix": "eslint --cache --fix --ext .ts ./src",
-    "check": "pnpm run lint:check && pnpm run prettier:check",
-    "fix": "pnpm run lint:fix && pnpm run prettier:fix",
-    "clean": "rm -rf lib/*",
-    "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm",
-    "build:esm": "rollup --config rollup.config.ts",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:types": "tsc -p tsconfig.types.json",
-    "build:test": "tsc -p tsconfig.test.json",
-    "test:watch": "jest --watch",
-    "test": "jest --coverage",
-    "prepublishOnly": "npm run test && npm run build",
-    "prepare": "husky install"
+  "version": "0.1.0",
+  "author": "Marc Römmelt <mail@m-roemmelt.com>",
+  "bugs": {
+    "url": "https://github.com/MarcRoemmelt/zod-value-object/issues"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.0.0",
     "@types/jest": "^29.5.0",
-    "@types/node": "18.15.5",
+    "@types/node": "18.15.6",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
     "eslint": "^8.36.0",
@@ -41,17 +25,12 @@
     "prettier": "^2.8.6",
     "rollup": "^3.0.0",
     "ts-jest": "^29.0.5",
-    "ts-morph": "^14.0.0",
     "ts-node": "^10.9.1",
     "tslib": "^2.5.0",
     "tsx": "^3.12.6",
     "typescript": "^5.0.2",
     "zod": "^3.21.4"
   },
-  "files": [
-    "/lib",
-    "/index.d.ts"
-  ],
   "exports": {
     ".": {
       "require": "./lib/index.js",
@@ -60,26 +39,46 @@
     },
     "./package.json": "./package.json"
   },
-  "sideEffects": false,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/MarcRoemmelt/value-object-ts"
-  },
-  "types": "./index.d.ts",
+  "files": [
+    "/lib",
+    "/index.d.ts"
+  ],
+  "homepage": "https://github.com/MarcRoemmelt/zod-value-object#readme",
   "keywords": [
     "ddd",
-    "valueobject",
-    "typescript",
     "type",
-    "validation"
+    "typescript",
+    "validation",
+    "valueobject"
   ],
-  "author": "Marc Römmelt <mail@m-roemmelt.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/MarcRoemmelt/value-object-ts/issues"
-  },
-  "homepage": "https://github.com/MarcRoemmelt/value-object-ts#readme",
+  "main": "./lib/index.js",
+  "module": "./lib/index.mjs",
   "peerDependencies": {
     "zod": "^3.21.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarcRoemmelt/zod-value-object"
+  },
+  "scripts": {
+    "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "rollup --config rollup.config.ts",
+    "build:test": "tsc -p tsconfig.test.json",
+    "build:types": "tsc -p tsconfig.types.json",
+    "check": "pnpm run lint:check && pnpm run prettier:check",
+    "clean": "rm -rf lib/*",
+    "fix": "pnpm run lint:fix && pnpm run prettier:fix",
+    "lint:check": "eslint --cache --ext .ts ./src",
+    "lint:fix": "eslint --cache --fix --ext .ts ./src",
+    "prepare": "husky install",
+    "prepublishOnly": "npm run test && npm run build",
+    "prettier:check": "prettier --check src/**/*.ts --no-error-on-unmatched-pattern",
+    "prettier:fix": "prettier --write src/**/*.ts --ignore-unknown --no-error-on-unmatched-pattern",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "sideEffects": false,
+  "types": "./index.d.ts"
 }

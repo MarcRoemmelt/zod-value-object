@@ -1,4 +1,4 @@
-# value-object-ts
+# zod-value-object
 
 Fully typed value objects for TypeScript build on top of [zod](https://github.com/colinhacks/zod)
 
@@ -8,20 +8,20 @@ This library provides a small utility class that guarantees three things:
 
 1. ValueObjects are immutable
 2. ValueObjects are typesafe
-3. ValueObjects are equal if their values are equal
+3. ValueObjects are value-equal (equal if their values are equal)
 
 # Installation
 
 ```typescript
-  npm install value-object-ts     # npm
-  yarn add alue-object-ts         # yarn
-  pnpm add alue-object-ts         # pnpm
+  npm install zod-value-object     # npm
+  yarn add zod-value-object        # yarn
+  pnpm add zod-value-object        # pnpm
 ```
 
 # Usage
 
 ```typescript
-import { ValueObject } from 'value-object-ts';
+import { ValueObject } from 'zod-value-object';
 
 /* Primitives */
 const schema = z.string().email();
