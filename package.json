@@ -64,7 +64,7 @@
   "scripts": {
     "build": "pnpm run clean && pnpm run build:cjs && pnpm run build:esm",
     "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:esm": "rollup --config rollup.config.ts",
+    "build:esm": "rollup --config rollup.config.mjs",
     "build:test": "tsc -p tsconfig.test.json",
     "build:types": "tsc -p tsconfig.types.json",
     "check": "pnpm run lint:check && pnpm run prettier:check",
