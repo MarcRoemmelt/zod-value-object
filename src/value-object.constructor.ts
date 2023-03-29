@@ -3,7 +3,7 @@ import { ZodBranded, ZodFirstPartySchemaTypes, ZodTypeAny } from 'zod';
 import { typeUtil, util } from './helpers/util';
 import { InvalidValueError } from './invalid-value.error';
 
-export class ValueObjectCtor<
+export class ValueObject<
   Type extends string,
   TSchema extends ZodBranded<ZodTypeAny, string> = ZodBranded<
     ZodTypeAny,
@@ -13,9 +13,9 @@ export class ValueObjectCtor<
   TInput extends typeUtil.Input<TSchema> = typeUtil.Input<TSchema>
 > implements typeUtil.ValueObjectCtor<Type, TSchema, T, TInput>
 {
-  /* This field ensures we cannot use a different ValueObject with
-   * the same shape instead. */
-  // @ts-ignore ts(6133)
+  static schema: InstanceType<typeof ZodBranded>;
+  static type: string;
+
   public readonly type: Type;
   public readonly schema: TSchema;
   public readonly value: T;
@@ -29,11 +29,11 @@ export class ValueObjectCtor<
   }
 
   toPlainValue(value: TInput = this.value): T {
-    return ValueObjectCtor.toPlainValue<TSchema>(value);
+    return ValueObject.toPlainValue<TSchema>(value);
   }
 
   equals(other: TInput): boolean {
-    const Ctor = this.constructor as typeof ValueObjectCtor;
+    const Ctor = this.constructor as typeof ValueObject;
     return (
       util.flyweight.run(Ctor, this.type, Ctor.toPlainValue(other)) === this
     );
@@ -53,25 +53,58 @@ export class ValueObjectCtor<
   }
 
   constructor(value: TInput) {
+    const Ctor = this.constructor as typeof ValueObject<
+      Type,
+      TSchema,
+      T,
+      TInput
+    >;
+
+    util.defineImmutable(this, 'schema', Ctor.schema);
+    util.defineImmutable(this, 'type', Ctor.type);
     util.defineImmutable(this, 'value', Object.freeze(value), true);
+    util.defineImmutable(this, util.IS_VALUE_OBJECT, true);
+
+    const unwrapped = Ctor.toPlainValue(value);
+    const instance = util.flyweight.run(Ctor, Ctor.type as Type, unwrapped);
+    /* Instance will be null once, if the flyweight cache is empty.
+     * In this case we don't return the flyweight instance, but the
+     * newly (implicitly) constructed instance */
+    if (instance) {
+      util.validateSync(instance, unwrapped, this.constructor.name);
+      util.copyPrototypeTo(
+        this.constructor.prototype,
+        instance.constructor.prototype
+      );
+
+      return instance;
+    }
+  }
+
+  static async createAsync(
+    value: typeUtil.Input<InstanceType<typeof ZodBranded>>
+  ) {
+    const unwrapped = this.toPlainValue(value);
+    await this.schema.parseAsync(unwrapped);
+    return util.flyweight.run(this, this.type, unwrapped);
   }
 
   static toPlainValue<
     Schema extends ZodFirstPartySchemaTypes,
     T extends typeUtil.Input<Schema> = typeUtil.Input<Schema>
   >(value: T): typeUtil.TPlain<Schema> {
-    if (isValueObject(value)) return value.toPlainValue();
+    if (util.isValueObject(value)) return value.toPlainValue();
 
     if (Array.isArray(value)) {
       return value.map((item: typeUtil.Input<any>) =>
-        ValueObjectCtor.toPlainValue(item)
+        ValueObject.toPlainValue(item)
       ) as typeUtil.TPlain<Schema>;
     }
     if (typeof value === 'object' && value !== null) {
       return Object.entries(value).reduce(
         (acc, [key, value]) => ({
           ...acc,
-          [key]: ValueObjectCtor.toPlainValue(value as typeUtil.Input<any>),
+          [key]: ValueObject.toPlainValue(value as typeUtil.Input<any>),
         }),
         {} as typeUtil.TPlain<Schema>
       );
@@ -86,13 +119,3 @@ export class ValueObjectCtor<
     util.flyweight.run = util.flyweightEnabled;
   }
 }
-
-const isValueObject = (
-  value: unknown
-): value is typeUtil.ValueObjectCtor<string> => {
-  return (
-    value !== null &&
-    typeof value === 'object' &&
-    value instanceof ValueObjectCtor
-  );
-};

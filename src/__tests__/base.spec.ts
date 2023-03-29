@@ -36,6 +36,14 @@ describe('ValueObject', () => {
     ).toThrow('Cannot redefine property: street');
   });
 
+  it('should evaluate instanceof correctly', () => {
+    class Street extends ValueObject('Street', z.string()) {}
+    class OtherStreet extends ValueObject('OtherStreet', z.string()) {}
+    const street = new Street('Some Street');
+    expect(street instanceof Street).toBe(true);
+    expect(street instanceof OtherStreet).toBe(false);
+  });
+
   it('should allow Array-type ValueObjects', () => {
     const schema = z.array(z.string());
     class ArrayType extends ValueObject('ArrayType', schema) {}

@@ -11,6 +11,8 @@ import {
   ZodTypeAny,
 } from 'zod';
 
+import { InvalidValueError } from '../invalid-value.error';
+
 export namespace util {
   export const sortObj = <T>(obj: T): T =>
     obj === null || typeof obj !== 'object'
@@ -37,7 +39,11 @@ export namespace util {
           return keys;
         };
 
-  export const defineImmutable = <TObject, TValue, TKey extends string>(
+  export const defineImmutable = <
+    TObject,
+    TValue,
+    TKey extends string | symbol
+  >(
     object: TObject,
     property: TKey,
     value: TValue,
@@ -87,8 +93,9 @@ export namespace util {
     const table = (db[type] = db[type] || Object.create(null));
 
     const key = JSON.stringify(util.sortObj(value));
-    if (table[key]) return table[key];
+    if (typeof table[key] !== 'undefined') return table[key];
 
+    table[key] = null;
     table[key] = new Ctor(value);
 
     return table[key];
@@ -115,6 +122,49 @@ export namespace util {
       return schema as unknown as typeUtil.Branded<Schema, Type>;
     } else {
       return schema.brand(type) as typeUtil.Branded<Schema, Type>;
+    }
+  };
+
+  export const copyPrototypeTo = (prototype1: object, prototype2: object) => {
+    const names = Object.getOwnPropertyNames(prototype1);
+    for (const prop of names) {
+      if (prop in prototype2) continue;
+      const desc = Object.getOwnPropertyDescriptor(prototype1, prop);
+      desc && Object.defineProperty(prototype2, prop, desc);
+    }
+  };
+
+  export const IS_VALUE_OBJECT = Symbol('IS_VALUE_OBJECT');
+  export const isValueObject = (
+    value: unknown
+  ): value is typeUtil.ValueObjectCtor<string> => {
+    return (
+      value !== null &&
+      typeof value === 'object' &&
+      IS_VALUE_OBJECT in value &&
+      value[IS_VALUE_OBJECT] === true
+    );
+  };
+
+  export const validateSync = (
+    instance: typeUtil.ValueObjectCtor<any>,
+    value: any,
+    name: string
+  ) => {
+    try {
+      instance['validate'](value);
+    } catch (error) {
+      if (
+        error instanceof Error &&
+        (error.message.includes('Async refinement encountered') ||
+          error.message.includes('Asynchronous transform encountered'))
+      ) {
+        error.message = error.message.replace(
+          'Use .parseAsync instead.',
+          `Use ${name}.createAsync() instead of new ${name}()`
+        );
+      }
+      throw new InvalidValueError(error as Error);
     }
   };
 }
@@ -159,6 +209,7 @@ export namespace typeUtil {
     schema: TSchema;
     readonly value: T;
     toPlainValue(value: TInput): T;
+    validate(value: T): T;
     equals(other: TInput): boolean;
     with(value: PartialValue<T>): ValueObjectCtor<Type, TSchema, T, TInput>;
   }

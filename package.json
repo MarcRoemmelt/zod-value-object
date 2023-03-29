@@ -1,7 +1,7 @@
 {
   "name": "zod-value-object",
   "description": "TypeScript implementation of a base ValueObject based on the zod library",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Marc Römmelt <mail@m-roemmelt.com>",
   "bugs": {
     "url": "https://github.com/MarcRoemmelt/zod-value-object/issues"
