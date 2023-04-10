@@ -148,4 +148,50 @@ describe('ValueObject', () => {
       'Invalid input'
     );
   });
+
+  it('should implement toStirng() correctly', () => {
+    class Name extends ValueObject('Name', z.string()) {}
+    const name = new Name('John Doe');
+    expect(name.toString()).toBe('John Doe');
+
+    class Numeric extends ValueObject('Numeric', z.number()) {}
+    const numeric = new Numeric(123);
+    expect(numeric.toString()).toBe('123');
+
+    class Arr extends ValueObject('Arr', z.array(z.number())) {}
+    const arr = new Arr([1, 2, 3]);
+    expect(arr.toString()).toBe('1,2,3');
+  });
+
+  it('should implement valueOf() correctly', () => {
+    class Name extends ValueObject('Name', z.string()) {}
+    const name = new Name('John Doe');
+    expect(name.valueOf()).toBe('John Doe');
+
+    class Numeric extends ValueObject('Numeric', z.number()) {}
+    const numeric = new Numeric(123);
+    expect(numeric.valueOf()).toBe(123);
+
+    class Arr extends ValueObject('Arr', z.array(z.number())) {}
+    const arr = new Arr([1, 2, 3]);
+    expect(arr.valueOf()).toEqual([1, 2, 3]);
+  });
+
+  it('should implement toJSON() correctly', () => {
+    class Name extends ValueObject('Name', z.string()) {}
+    const name = new Name('John Doe');
+    expect(name.toJSON()).toBe('John Doe');
+
+    class Numeric extends ValueObject('Numeric', z.number()) {}
+    const numeric = new Numeric(123);
+    expect(numeric.toJSON()).toBe(123);
+
+    class Arr extends ValueObject('Arr', z.array(z.number())) {}
+    const arr = new Arr([1, 2, 3]);
+    expect(arr.toJSON()).toEqual('[1,2,3]');
+
+    class Obj extends ValueObject('Obj', z.object({ a: z.number() })) {}
+    const obj = new Obj({ a: 1 });
+    expect(obj.toJSON()).toEqual('{"a":1}');
+  });
 });

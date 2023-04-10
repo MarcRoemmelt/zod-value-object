@@ -20,6 +20,20 @@ export class ValueObject<
   public readonly schema: TSchema;
   public readonly value: T;
 
+  toString() {
+    return this.toPlainValue().toString();
+  }
+
+  valueOf() {
+    return this.toPlainValue().valueOf();
+  }
+
+  toJSON() {
+    const plain = this.toPlainValue();
+    if (util.isPrimitive(plain)) return plain;
+    return JSON.stringify(plain);
+  }
+
   validate(value: T): T {
     try {
       return this.schema.parse(value);
