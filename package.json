@@ -17,7 +17,7 @@
     "eslint-plugin-ban": "^1.6.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-simple-import-sort": "^10.0.0",
-    "eslint-plugin-unused-imports": "^2.0.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
     "fixpack": "^4.0.0",
     "husky": "^8.0.0",
     "jest": "^29.5.0",
