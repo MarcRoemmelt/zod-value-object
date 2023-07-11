@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 devDependencies:
   '@rollup/plugin-typescript':
     specifier: ^11.0.0
@@ -32,8 +36,8 @@ devDependencies:
     specifier: ^10.0.0
     version: 10.0.0(eslint@8.36.0)
   eslint-plugin-unused-imports:
-    specifier: ^2.0.0
-    version: 2.0.0(@typescript-eslint/eslint-plugin@5.56.0)(eslint@8.36.0)
+    specifier: ^3.0.0
+    version: 3.0.0(@typescript-eslint/eslint-plugin@5.56.0)(eslint@8.36.0)
   fixpack:
     specifier: ^4.0.0
     version: 4.0.0
@@ -2061,11 +2065,11 @@ packages:
       eslint: 8.36.0
     dev: true
 
-  /eslint-plugin-unused-imports@2.0.0(@typescript-eslint/eslint-plugin@5.56.0)(eslint@8.36.0):
-    resolution: {integrity: sha512-3APeS/tQlTrFa167ThtP0Zm0vctjr4M44HMpeg1P4bK6wItarumq0Ma82xorMKdFsWpphQBlRPzw/pxiVELX1A==}
+  /eslint-plugin-unused-imports@3.0.0(@typescript-eslint/eslint-plugin@5.56.0)(eslint@8.36.0):
+    resolution: {integrity: sha512-sduiswLJfZHeeBJ+MQaG+xYzSWdRXoSw61DpU13mzWumCkR0ufD0HmO4kdNokjrkluMHpj/7PJeN35pgbhW3kw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
-      '@typescript-eslint/eslint-plugin': ^5.0.0
+      '@typescript-eslint/eslint-plugin': ^6.0.0
       eslint: ^8.0.0
     peerDependenciesMeta:
       '@typescript-eslint/eslint-plugin':
